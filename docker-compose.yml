@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+
+  #EMPIEZA EL BACKEND
+  backend:
+    build:
+      context: ./backend # Ruta del backend
+      dockerfile: Dockerfile
+    container_name: node-backend
+    ports:
+      - "3000:3000" # Puerto público para el backend
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    restart: unless-stopped
+    depends_on:
+      - database # Asegura que la base de datos esté lista antes de levantar el backend
+
+  #EMPIEZA LA BASE DE DATOS
+  database:
+    image: mysql:8 # Puedes cambiar a PostgreSQL o MongoDB según prefieras
+    container_name: mysql-db
+    ports:
+      - "3306:3306" # Puerto público para la base de datos
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword # Cambia esto por algo más seguro
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: unless-stopped
+
+volumes:
+  db_data: 
