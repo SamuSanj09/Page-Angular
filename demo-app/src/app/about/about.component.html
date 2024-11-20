@@ -1,0 +1,36 @@
+<div class="container-about">
+    <div class="container-left">
+      <h2>Misión de la Constructora</h2>
+      <p>
+        Nuestra misión es hacer grandes construcciones, para que tú puedas descansar mientras optimizamos los costos operativos con nuestros asociados.
+      </p>
+      <h2>Visión</h2>
+      <p>
+        Nuestra visión es ser la constructora más grande de Latinoamérica y ser reconocidos por la calidad de nuestros trabajos.
+      </p>
+    </div>
+  
+    <div class="container-right">
+    <h2 style="text-align: center; color: #732f12;">Valores</h2>
+      <!-- Lista de valores con ngFor -->
+      <div *ngFor="let valor of valores" class="valor" (click)="toggleValue(valor.id)">
+        <h3>{{ valor.title }}</h3>
+        <p *ngIf="valor.show">{{ valor.description }}</p>
+      </div>
+    </div>
+</div>
+
+
+<!--Div de Team -->
+<h2 style="text-align: center;">Nuestro Gran Equipo</h2>
+    <div class="team-container">
+        <div class="team-card" *ngFor="let member of teamMembers">
+          <div class="card-individual">
+            <img [src]="member.photo" alt="Photo of {{ member.name }}" class="team-photo" />
+                <h3>{{ member.name }}</h3>
+                <p>{{ member.role }}</p>
+          </div>
+        </div>
+    </div>
+
+  

@@ -1,0 +1,127 @@
+/* Estructura general */
+.container-about {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+  }
+  
+  /* Sección izquierda: Misión y Visión */
+  .container-left {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .container-left h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .container-left p {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  /* Sección derecha: Valores */
+  .container-right {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .container-right h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos de cada valor */
+  .valor {
+    border: 1.2px solid #ccc;
+    background-color: #cac3c3;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  
+  .valor:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: #f0f0f0;
+  }
+  
+  .valor h3 {
+    margin: 0;
+    color:black;
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  .valor p {
+    margin: 10px 0 0;
+    color: #555;
+    font-size: 14px;
+  }
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .container-about {
+      flex-direction: column;
+    }
+  
+    .container-left, .container-right {
+      min-width: 100%;
+    }
+  }
+
+
+  .team-container {
+    display: flex; /* O utiliza grid si prefieres */
+    flex-wrap: wrap; /* Permite que las tarjetas bajen a la siguiente línea si es necesario */
+    gap: 16px; /* Espacio entre tarjetas */
+    justify-content: center; /* Centra las tarjetas horizontalmente */
+  }
+
+  
+  .team-card {
+    background-color: #f8f6f6;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra inicial */
+    padding: 16px;
+    text-align: center;
+    width: 250px; /* Tamaño fijo */
+    transition: transform 0.3s ease, box-shadow 0.5s ease;
+    margin-bottom: 30px; 
+  }
+  
+  /* Efecto de hover */
+  .team-card:hover {
+    transform: translateY(-10px); /* Mueve la tarjeta hacia arriba */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Aumenta la sombra */
+  }
+
+  .team-photo {
+    width: 100%; /* Ajusta al ancho de la tarjeta */
+    height: 200px; /* Fija una altura consistente */
+    object-fit: cover; /* Recorta las imágenes para que llenen el espacio */
+    object-position: center;
+    border-radius: 35%; /* Opcional: para un diseño circular */
+  }
+  

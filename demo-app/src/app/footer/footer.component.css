@@ -1,0 +1,43 @@
+/* footer.component.css */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  footer .social-links {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  footer .social-links li {
+    display: inline;
+    margin: 0 10px;
+  }
+  
+  footer .social-links li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  footer .social-links li a:hover {
+    text-decoration: underline;
+  }
+
+
+/* Estilos de Los Iconoces de Redes Sociales */
+.social-icons a{
+  color:wheat;
+  margin: 0 40px;
+  font-size: 25px;
+  transition: transform 0.5s ease, color 0.8s ease;
+}
+
+.social-icons a:hover{
+  color: #f1c40f;
+  transform: scale(4.3);
+}
+
+
+  

@@ -1,0 +1,98 @@
+
+
+.custom-carousel {
+    width: 50%; /* Ajusta el ancho al 80% de su contenedor */
+    max-width: 10px; /* Limita el ancho máximo a 900px */
+    margin: 0 auto; /* Centra el carousel */
+  }
+  
+  .custom-carousel .carousel-inner img {
+    width: 20%; /* Asegura que las imágenes no se estiren fuera del contenedor */
+    height: 20%; /* Ajusta la altura proporcionalmente */
+  }
+
+  .carousel-inner {
+    height: 470px;
+  }
+  
+  .carousel-inner .carousel-item {
+    height: 100%;
+  }
+  
+  .carousel-inner img {
+    height: 100%;
+    object-fit: cover; /* Mantiene la proporción de la imagen */
+  }
+
+  .welcome-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    box-shadow: 20px 24px 26px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  .welcome-container h1{
+    font-size: 2rem;
+    color: #872a2a;
+    margin-bottom: 10px;
+  }
+
+  .welcome-container p {
+    font-size: 1.2rem;           /* Tamaño de fuente para el párrafo */
+    color: #5b4242;                 /* Color gris claro para el texto del párrafo */
+    max-width: 600px;            /* Limita el ancho del párrafo */
+    margin: 0 auto;              /* Centra el párrafo */
+  }
+
+
+  /* Estilos para la sección de testimonios */
+.testimonios-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .testimonios-container h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .testimonios {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .testimonio {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+    margin: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .testimonio:hover {
+    transform: scale(1.05);
+  }
+  
+  .testimonio-text {
+    font-style: italic;
+  }
+  
+  .testimonio-author {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  @media (max-width: 768px) {
+    .testimonio {
+      width: 80%;
+      margin: 10px auto;
+    }
+  }
+
