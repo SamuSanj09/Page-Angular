@@ -2,7 +2,7 @@
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #e3e2e2;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -65,22 +65,34 @@
   }
 
 
-  .Oficinas-Locales{
+  .Oficinas-Global {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las tarjetas pasen a la siguiente fila */
+    justify-content: center; /* Centra las tarjetas horizontalmente */
+    gap: 16px; /* Espaciado uniforme entre las tarjetas */
+    padding: 16px; /* Espaciado interno para el contenedor */
+  }
+  
+  .Oficinas-Locales {
     padding: 16px;
     text-align: center;
-    width: 250px; /* Tamaño fijo */
+    flex: 1 1 calc(100% / 3 - 32px); /* Ajusta a 3 tarjetas por fila con espacio */
+    max-width: 250px; /* Ancho máximo */
+    box-sizing: border-box; /* Asegura que padding se respete */
     transition: transform 0.3s ease, box-shadow 0.5s ease;
-    margin-bottom: 30px;
-    margin-right: 65px;
-  }
-
-
-  .Oficinas-Global{
-    display: flex;
-    flex-wrap: wrap;
   }
 
   .phone-icon {
     width: 20px;  /* Ajusta al tamaño deseado */
     height: 20px; /* Ajusta al tamaño deseado */
   }
+
+  #map {
+    border: 1px solid #b83d3d;
+    width: 85%; 
+    height: 400px; 
+    margin: 0 auto;
+    margin-top:10px;
+    margin-bottom:20px;
+  }
+  

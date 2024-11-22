@@ -1,14 +1,17 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Monserrat', sans-serif;
   margin: 0;
   padding: 0;
+  font-weight: 200px;
 }
 
 /* Estilo para los encabezados (h1) */
-h1 {
-  font-size: 3rem;
-  text-align: center;
+.h1{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900; /* Mayor peso para los encabezados */
+  size: 100px;
 }
 
 /* Media query para pantallas de hasta 768px (tabletas y móviles) */
@@ -62,3 +65,20 @@ h1 {
     height: 200px; /* Limitar la altura de las imágenes en pantallas muy pequeñas */
   }
 }
+
+
+
+  /* En el archivo styles.css */
+  body {
+    font-family: 'Roboto', sans-serif; /* Fuente para el cuerpo del texto */
+    font-size: 16px;
+  }
+  
+  h1 {
+    font-family: 'Montserrat', sans-serif; /* Fuente para encabezados */
+    font-weight: 600;
+  }
+  
+  p {
+    font-family: 'Raleway', sans-serif; /* Fuente para párrafos */
+  }
