@@ -1,15 +1,27 @@
 import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
+import { ContactService } from '../services/contact-service';   
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [],
+  imports: [FormsModule, HttpClientModule],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css'],
 })
 export class ContactComponent implements AfterViewInit {
   private map!: L.Map;
+
+  FormData = {
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  };
+
+  constructor(private contactService: ContactService) {}  // Corregido el nombre de 'contactServie' a 'contactService'
 
   ngAfterViewInit(): void {
     this.initMap();
@@ -27,37 +39,38 @@ export class ContactComponent implements AfterViewInit {
     // Creamos un marcador con un ícono personalizado
     L.marker([-37.603722, -58.381592], {
       icon: L.icon({
-        iconUrl: 'assets/images/map-icon.svg',  // Ruta al ícono de tu imagen
-        iconSize: [25, 41],  // Tamaño del ícono
-        iconAnchor: [13, 41],  // Punto donde se ancla el ícono
-        popupAnchor: [0, -41],  // Posición del popup en relación al ícono
+        iconUrl: 'assets/images/map-icon.svg',
+        iconSize: [25, 41],
+        iconAnchor: [13, 41],
+        popupAnchor: [0, -41],
       }),
     })
-      .addTo(this.map) 
-      .bindPopup('Oficina Puerto Madero') 
-      .openPopup(); 
+      .addTo(this.map)
+      .bindPopup('Oficina Puerto Madero')
+      .openPopup();
 
-      L.marker([-38.103722, -58.381592], {
-        icon: L.icon({
-          iconUrl: 'assets/images/map-icon.svg',  // Ruta al ícono de tu imagen
-          iconSize: [25, 41],  // Tamaño del ícono
-          iconAnchor: [13, 41],  // Punto donde se ancla el ícono
-          popupAnchor: [0, -41],  // Posición del popup en relación al ícono
-        }),
-      })
-        .addTo(this.map)  // Añadimos el marcador al mapa
-        .bindPopup('Oficina Chasquipampa')  // Asignamos un popup al marcador
-        .openPopup();  
+    L.marker([-38.103722, -58.381592], {
+      icon: L.icon({
+        iconUrl: 'assets/images/map-icon.svg',  // Ruta al ícono de tu imagen
+        iconSize: [25, 41],
+        iconAnchor: [13, 41],  // Punto donde se ancla el ícono
+        popupAnchor: [0, -41],
+      }),
+    })
+      .addTo(this.map)  // Añadimos el marcador al mapa
+      .bindPopup('Oficina Chasquipampa')
+      .openPopup();
   }
 
   onSubmit(): void {
     // Recogemos los datos del formulario
-    const formData = {
-      name: (document.getElementById('name') as HTMLInputElement).value,
-      email: (document.getElementById('email') as HTMLInputElement).value,
-      subject: (document.getElementById('subject') as HTMLInputElement).value,
-      message: (document.getElementById('message') as HTMLTextAreaElement).value,
-    };
-    console.log('Form Data:', formData);
+    this.contactService.sendContactMessage(this.FormData).subscribe(  // Cambiado a 'contactService'
+      (response: any) => {  // Puedes cambiar 'any' por un tipo específico de la respuesta si lo prefieres
+        console.log('Message was sent successfully', response);
+      },
+      (error: any) => {  // Cambia 'any' por un tipo específico si lo tienes
+        console.error('There was an error sending the message', error);
+      }
+    );
   }
 }

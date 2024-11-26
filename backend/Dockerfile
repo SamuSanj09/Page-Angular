@@ -1,4 +1,4 @@
-# Usa una imagen oficial de Node.js, versión LTS por estabilidad
+    # Usa una imagen oficial de Node.js, versión LTS por estabilidad
 FROM node:18-alpine
 
 # Establece el directorio de trabajo en el contenedor

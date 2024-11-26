@@ -3,17 +3,15 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { CommonModule } from '@angular/common';
-import { AboutComponent } from './about/about.component';
 import { FormsModule } from '@angular/forms';  // Agregar esto
-import { NgModule } from '@angular/core';
-
+import { WhatsappButtonComponent } from './whatsapp-button/whatsapp-button.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-
   imports: [RouterOutlet, NavbarComponent, CommonModule, 
-              RouterLink, RouterLinkActive, FooterComponent, FormsModule],
+              RouterLink, RouterLinkActive, FooterComponent, 
+              FormsModule, WhatsappButtonComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 
