@@ -16,7 +16,7 @@ declare var window: any;  // Permite acceder a BotUI desde window
 })
 export class ChatbotComponent implements AfterViewInit {
   
-  isChatVisible = false;  // Bandera para controlar la visibilidad del chat
+  isChatVisible = true;  // Bandera para controlar la visibilidad del chat
 
   constructor() { }
 
