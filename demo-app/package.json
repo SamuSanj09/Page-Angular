@@ -19,11 +19,13 @@
     "@angular/platform-browser-dynamic": "~17.0.0",
     "@angular/router": "~17.0.0",
     "bootstrap": "^5.3.3",
+    "botui": "^0.3.6",
     "font-awesome": "^4.7.0",
     "fuse.js": "^7.0.0",
     "leaflet": "^1.9.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "vue": "^3.5.13",
     "zone.js": "~0.14.2"
   },
   "devDependencies": {

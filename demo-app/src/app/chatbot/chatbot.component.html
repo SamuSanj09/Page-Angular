@@ -1,0 +1,10 @@
+<!-- Botón para abrir el chat (cambiado ícono y agregado la funcionalidad de toggle) -->
+<div class="chat-icon" (click)="toggleChat()">
+    <i class="fa fa-comments"></i> <!-- Ícono de mensaje (cambiado a 'fa-comment') -->
+  </div>
+  
+  <!-- Contenedor del chatbot, visible solo cuando isChatVisible es true (usando ngIf) -->
+  <div *ngIf="isChatVisible" id="chatbot-app" class="botui-app-container">
+    <bot-ui></bot-ui>
+  </div>
+  
