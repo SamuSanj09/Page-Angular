@@ -2,7 +2,7 @@ import { Component, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-declare var window: any;  // Permite acceder a BotUI desde window
+declare var window: any; // Permite acceder a BotUI desde window
 
 @Component({
   selector: 'app-chatbot',
@@ -10,52 +10,74 @@ declare var window: any;  // Permite acceder a BotUI desde window
   templateUrl: './chatbot.component.html',
   styleUrls: ['./chatbot.component.css'],
   imports: [
-    CommonModule, // Asegúrate de importar CommonModule aquí
+    CommonModule, // Importa CommonModule para funcionalidades básicas de Angular
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ChatbotComponent implements AfterViewInit {
-  
-  isChatVisible = true;  // Bandera para controlar la visibilidad del chat
+  isChatVisible = true; // Bandera para controlar la visibilidad del chat
+  botui: any; // Variable para almacenar la instancia de BotUI
 
-  constructor() { }
+  constructor() {}  
 
   ngAfterViewInit(): void {
-    // Esperar que el DOM esté completamente cargado antes de inicializar BotUI
-    setTimeout(() => {
-      if (window.BotUI) {
-        const botui = new window.BotUI('chatbot-app'); // Asegúrate de que el contenedor exista
-
-        // Función que permite continuar la conversación
-        this.startConversation(botui);
-      } else {
-        console.error('BotUI no está disponible en window');
-      }
-    }, 2000);  // Espera 2 segundos para asegurarte de que BotUI esté disponible
+    // La inicialización de BotUI ocurre solo al mostrar el chat
+    console.log('Chatbot Component initialized, waiting for user interaction.');
+    this.initializeBotUI();
+    
   }
 
-  // Método para mostrar u ocultar el chat
-  toggleChat() {
+  //Logica para mostrar/ocultar chat emergente
+  toggleChat(): void {
     this.isChatVisible = !this.isChatVisible;
+  
+    const chatbotContainer = document.getElementById('chatbot-app');
+    if (chatbotContainer) {
+      if (this.isChatVisible) {
+        chatbotContainer.classList.add('visible'); // Muestra el contenedor
+      } else {
+        chatbotContainer.classList.remove('visible'); // Oculta el contenedor
+      }
+    }
   }
+
+  // Método para inicializar BotUI
+  private initializeBotUI(): void {
+  console.log('Initializing BotUI...');
+  const chatbotContainer = document.getElementById('chatbot-app');
+  if (!chatbotContainer) {
+    console.error('BotUI: Container with id #chatbot-app not found.');
+    return;
+  }
+
+  try {
+    this.botui = new window.BotUI('chatbot-app');
+    console.log('BotUI instance created:', this.botui);
+    this.startConversation(this.botui);
+  } catch (error) {
+    console.error('Error initializing BotUI:', error);
+  }
+}
 
   // Inicia la conversación y permite mensajes continuos
-  startConversation(botui: any) {
+  startConversation(botui: any): void {
     botui.message.add({
       content: 'Hola, ¿cómo puedo ayudarte hoy?'
     }).then(() => {
       return this.askQuestion(botui);
+    }).catch((error: any) => {
+      console.error('Error al iniciar la conversación:', error);
     });
   }
 
   // Pregunta al usuario y espera su respuesta
-  askQuestion(botui: any) {
+  askQuestion(botui: any): Promise<void> {
     return botui.action.text({
       action: {
         placeholder: 'Escribe tu mensaje...'
       }
     }).then((res: any) => {
-      // Aquí es donde puedes agregar lógica de respuestas personalizadas
+      // Lógica para respuestas personalizadas
       if (res.value.toLowerCase().includes('hola')) {
         botui.message.add({
           content: '¡Hola! ¿Cómo puedo ayudarte más hoy?'

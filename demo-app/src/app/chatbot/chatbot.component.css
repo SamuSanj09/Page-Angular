@@ -1,36 +1,41 @@
+#chatbot-app {
+  position: fixed;
+  bottom: 85px;
+  left: 20px;
+  width: 400px;
+  height: 450px;
+  background-color: rgb(223, 223, 223);
+  border-radius: 10px;
+  box-shadow: 20px 8px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 999;
+  border: 1px solid black;
+  display: none; /* Se oculta por defecto */
+}
+
+/* Solo se mostrará si la clase visible se aplica */
+#chatbot-app.visible {
+  display: block;
+}
+
 .chat-icon {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background-color: #86540b;
-    color: white;
-    border-radius: 50%;
-    width: 62px;
-    height: 62px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 100;
-    border: 2px solid black; /* Añadido borde negro */
- }
- 
- #chatbot-app {
-    position: fixed;
-    bottom: 85px;
-    left: 20px;
-    width: 400px;
-    height: 450px;
-    background-color: rgb(97, 17, 17);
-    border-radius: 10px;
-    box-shadow: 20px 8px 20px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    z-index: 999;
-    border: 1px solid black; /* Añadido borde negro */
- }
- 
- /* Estilos para el icono de Font Awesome, puedes elegir otro icono */
- .fa-comments {
-    font-size: 40px;
- }
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #86540b;
+  color: white;
+  border-radius: 50%;
+  width: 62px;
+  height: 62px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  border: 2px solid black;
+}
+
+.fa-comments {
+  font-size: 40px;
+}
