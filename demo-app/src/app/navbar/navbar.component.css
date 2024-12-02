@@ -1,6 +1,6 @@
-/* Contenedor general del navbar */
+/* Estilos generales para el navbar */
 nav {
-  background-color: #333;
+  background-color: #5C4033;
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
@@ -10,7 +10,6 @@ nav {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Contenedor para la logo y los enlaces */
 .navbar-container {
   display: flex;
   justify-content: space-between;
@@ -114,9 +113,31 @@ button:focus {
     align-items: center;
   }
 
+  /* Ocultar los enlaces del navbar por defecto */
+  .navbar-links-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: white;
+    width: 250px;
+    height: 100%;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(100%);
+  }
+
+  /* Mostrar los enlaces cuando el menú está abierto */
+  .navbar-links-container.show {
+    display: block;
+    transform: translateX(0);
+  }
+
   .navbar-links {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     margin-top: 10px;
   }
 
@@ -131,17 +152,42 @@ button:focus {
   }
 
   input[type="text"] {
-    width: 90%; /* Ocupa el ancho completo menos márgenes */
+    width: 90%;
     margin-bottom: 10px;
   }
 
   button {
     width: 90%;
   }
+
+  .menu-toggle {
+    display: block;
+  }
 }
 
-/* Opcional: Estilo de transición general */
-* {
-  box-sizing: border-box;
-  transition: all 0.3s ease-in-out;
+
+ /* Cambiar color de los enlaces a negro cuando se abre el menú en móvil */
+ .navbar-links-container.show .navbar-links a {
+  color: black; /* Enlaces en negro cuando se abre el menú */
+}
+
+.menu-toggle {
+  display: none; /* Oculto por defecto */
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+/* Eliminar el efecto hover en el botón de la hamburguesa */
+.menu-toggle:hover {
+  background-color: transparent; 
+  color: white; 
+  transform: none; 
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
 }

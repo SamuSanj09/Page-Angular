@@ -10,8 +10,12 @@ import Fuse from 'fuse.js';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
+
 export class NavbarComponent {
   searchQuery: string = '';
+
+  
 
   // Mapa de palabras clave a rutas y secciones
   private routesMap =
@@ -33,13 +37,17 @@ export class NavbarComponent {
     keys: ['key'], 
     threshold: 0.4, 
   });
+  
+  menuOpen: boolean = false
 
   constructor(private router: Router) {}
 
   onSearch(event: Event): void {
     event.preventDefault(); // Evita el envío del formulario
+    this.closeMenu(); // Cerrar el menú si está abierto
 
     const results = this.fuse.search(this.searchQuery.trim().toLowerCase());
+    this.searchQuery = ''; // Limpiar eel forms luego de usarlooo
     if (results.length > 0) {
       const { route, section } = results[0].item;
 
@@ -52,6 +60,11 @@ export class NavbarComponent {
     } else {
       alert(`No se encontró ninguna coincidencia para "${this.searchQuery}".`);
     }
+  }
+
+  // Función para cerrar el menú
+  closeMenu(): void {
+    this.menuOpen = false;
   }
 
   private scrollToSection(id: string): void {
@@ -67,5 +80,11 @@ export class NavbarComponent {
   private handleNavigationError(err: any, query: string): void {
     console.error('Error al navegar:', err);
     alert(`No se pudo navegar a la sección o ruta correspondiente a "${query}".`);
+  }
+
+
+  // Método para abrir/cerrar el menú
+  toggleMenu(): void {
+    this.menuOpen = !this.menuOpen; // Alterna el valor de la variable
   }
 }
