@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const contactRoutes = require('./routes/contactRoutes'); // Importa las rutas de contacto
+const chatbotRoutes = require('./routes/chatbotRoutes'); // Importa las rutas de chatbot
 const app = express();
 
 // Configuración de CORS
@@ -27,7 +29,8 @@ app.get('/', (req, res) => {
 app.use('/api', contactRoutes);
 
 
-
+// Usa las rutas del chatbot
+app.use('/api', chatbotRoutes);
 
 
 

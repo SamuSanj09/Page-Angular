@@ -1,6 +1,8 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 
 declare var window: any; // Permite acceder a BotUI desde window
 
@@ -18,7 +20,7 @@ export class ChatbotComponent implements AfterViewInit {
   isChatVisible = true; // Bandera para controlar la visibilidad del chat
   botui: any; // Variable para almacenar la instancia de BotUI
 
-  constructor() {}  
+  constructor(private http: HttpClient) {}  
 
   ngAfterViewInit(): void {
     // La inicialización de BotUI ocurre solo al mostrar el chat
@@ -77,22 +79,21 @@ export class ChatbotComponent implements AfterViewInit {
         placeholder: 'Escribe tu mensaje...'
       }
     }).then((res: any) => {
-      // Lógica para respuestas personalizadas
-      if (res.value.toLowerCase().includes('hola')) {
-        botui.message.add({
-          content: '¡Hola! ¿Cómo puedo ayudarte más hoy?'
-        });
-      } else if (res.value.toLowerCase().includes('adiós')) {
-        botui.message.add({
-          content: '¡Adiós! ¡Espero verte pronto!'
-        });
-      } else {
-        botui.message.add({
-          content: `Tu mensaje fue: ${res.value}. ¿En qué más puedo ayudarte?`
-        });
-      }
-
+      // Realiza una solicitud HTTP al backend
+      return this.http.post('http://localhost:3000/api/chat', { message: res.value }).toPromise();
+    }).then((response: any) => {
+      // Procesa la respuesta del backend
+      const reply = response.reply || 'No entendí lo que dijiste. ¿En qué más puedo ayudarte?';
+      botui.message.add({
+        content: reply
+      });
       // Después de cada respuesta, vuelve a preguntar
+      return this.askQuestion(botui);
+    }).catch((error: any) => {
+      console.error('Oh, el chat no se encuentra disponible ahora:', error);
+      botui.message.add({
+        content: 'Hubo un problema al procesar tu mensaje. Intenta mas tarde.'
+      });
       return this.askQuestion(botui);
     });
   }
