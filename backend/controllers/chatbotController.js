@@ -11,34 +11,27 @@ const options = {
 
 exports.handleMessage = (req, res) => {
   const userMessage = req.body.message.toLowerCase().trim();
-  const userId = req.body.userId || 'default';  // Suponiendo que pasas un userId o algo para identificar al usuario
+  const userId = req.body.userId || 'default';  
 
-  // Inicializa el contexto si no existe
   if (!conversationContext[userId]) {
     conversationContext[userId] = ['hola'];  // El usuario comienza en la opción "hola"
   }
 
   let reply;
 
-  // Si el mensaje es "0", retrocede al paso anterior
   if (userMessage === '0') {
     if (conversationContext[userId].length > 1) {
-      // Elimina la última opción para volver atrás
       conversationContext[userId].pop();
     }
 
     const previousMessage = conversationContext[userId].slice(-1)[0];  // Última opción válida
     reply = options[previousMessage];
   } else {
-    // Si el mensaje es válido, muestra el mensaje correspondiente
     reply = options[userMessage] || 'Lo siento, no entendí tu mensaje. Por favor, elige una opción válida:\n1. Ver productos\n2. Ver precios\n3. Contactar soporte';
 
-    // Si el mensaje no es "0", agrega la opción al contexto
     if (userMessage !== '0') {
       conversationContext[userId].push(userMessage);
     }
   }
-
-  // Enviar la respuesta al frontend
   res.json({ reply });
 };
